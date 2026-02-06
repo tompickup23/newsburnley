@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Burnley - Local News, Sport & Community Updates</title>
+    <meta name="description" content="Latest Burnley news, sport and community updates. Aggregated from trusted Lancashire sources including Burnley Express, BBC Lancashire and more.">
+    <meta name="keywords" content="Burnley news, Burnley FC, Burnley Express, Lancashire news, Padiham, Brierfield, local news Burnley">
+    <link rel="canonical" href="https://newsburnley.co.uk/">
+    <meta property="og:title" content="News Burnley - Local News & Updates">
+    <meta property="og:description" content="Latest Burnley news aggregated from trusted Lancashire sources.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://newsburnley.co.uk/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--bg:#0a0a0a;--surface:rgba(28,28,30,0.7);--surface-hover:rgba(44,44,46,0.8);--text:#f5f5f7;--text-secondary:rgba(245,245,247,0.6);--accent:#0a84ff;--border:rgba(255,255,255,0.08);--claret:#8B2635}
+        body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+        .container{max-width:900px;margin:0 auto;padding:0 20px}
+
+        /* Header */
+        header{padding:20px 0;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(10,10,10,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);z-index:100}
+        .header-inner{display:flex;align-items:center;justify-content:space-between}
+        .logo{font-size:1.4rem;font-weight:700;color:var(--text);text-decoration:none;letter-spacing:-0.02em}
+        .logo span{color:var(--claret)}
+        .header-link{color:var(--text-secondary);text-decoration:none;font-size:0.85rem;transition:color 0.2s}
+        .header-link:hover{color:var(--accent)}
+
+        /* Hero */
+        .hero{padding:60px 0 40px;text-align:center}
+        .hero h1{font-size:clamp(2rem,5vw,3rem);font-weight:700;letter-spacing:-0.03em;margin-bottom:12px;background:linear-gradient(135deg,var(--text) 0%,var(--claret) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero p{color:var(--text-secondary);font-size:1.05rem;max-width:500px;margin:0 auto}
+
+        /* Articles */
+        .articles{padding-bottom:60px}
+        .article-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:16px;transition:all 0.3s ease;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+        .article-card:hover{background:var(--surface-hover);border-color:rgba(255,255,255,0.12);transform:translateY(-2px)}
+        .article-card h2{font-size:1.15rem;font-weight:600;margin-bottom:8px;letter-spacing:-0.01em;line-height:1.4}
+        .article-card h2 a{color:var(--text);text-decoration:none;transition:color 0.2s}
+        .article-card h2 a:hover{color:var(--accent)}
+        .article-meta{display:flex;align-items:center;gap:12px;margin-bottom:10px;font-size:0.8rem}
+        .badge{background:var(--claret);color:#fff;padding:3px 10px;border-radius:20px;font-size:0.72rem;font-weight:600;letter-spacing:0.02em}
+        .date{color:var(--text-secondary)}
+        .article-summary{color:var(--text-secondary);font-size:0.9rem;line-height:1.5}
+
+        /* Loading */
+        .loading{text-align:center;padding:60px 0;color:var(--text-secondary)}
+        .loading-spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 16px}
+        @keyframes spin{to{transform:rotate(360deg)}}
+
+        /* Footer */
+        footer{border-top:1px solid var(--border);padding:30px 0;text-align:center;color:var(--text-secondary);font-size:0.82rem}
+        footer a{color:var(--accent);text-decoration:none}
+        footer p+p{margin-top:6px}
+
+        /* Count badge */
+        .article-count{text-align:center;margin-bottom:24px;font-size:0.85rem;color:var(--text-secondary)}
+        .article-count strong{color:var(--text)}
+    </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "News Burnley",
+        "url": "https://newsburnley.co.uk",
+        "description": "Burnley news aggregated from trusted Lancashire sources",
+        "publisher": {
+            "@type": "Organization",
+            "name": "News Burnley",
+            "url": "https://newsburnley.co.uk"
+        }
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-inner">
+                <a href="/" class="logo">News<span>Burnley</span></a>
+                <a href="https://newslancashire.co.uk" class="header-link">News Lancashire &rarr;</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <h1>Burnley News</h1>
+            <p>Latest news and updates from Burnley, aggregated from trusted Lancashire sources.</p>
+        </section>
+
+        <div id="article-count" class="article-count"></div>
+        <main id="content" class="articles">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <p>Loading latest Burnley news...</p>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 News Burnley. Aggregated from multiple sources.</p>
+            <p>Part of the <a href="https://newslancashire.co.uk">News Lancashire</a> network</p>
+        </div>
+    </footer>
+
+    <script>
+        fetch('burnley-news.json')
+            .then(function(r){return r.json()})
+            .then(function(articles){
+                document.getElementById('article-count').innerHTML =
+                    '<strong>' + articles.length + '</strong> articles from Burnley and surrounding areas';
+                var html = articles.map(function(a){
+                    var summary = a.summary || '';
+                    summary = summary.replace(/<[^>]+>/g, '');
+                    var dateStr = '';
+                    try {
+                        var d = new Date(a.published);
+                        dateStr = d.toLocaleDateString('en-GB', {day:'numeric',month:'short',year:'numeric'});
+                    } catch(e) {
+                        dateStr = a.published || '';
+                    }
+                    return '<article class="article-card">' +
+                        '<div class="article-meta">' +
+                            '<span class="badge">' + a.source + '</span>' +
+                            '<span class="date">' + dateStr + '</span>' +
+                        '</div>' +
+                        '<h2><a href="' + a.link + '" target="_blank" rel="noopener">' + a.title + '</a></h2>' +
+                        (summary ? '<p class="article-summary">' + summary + '</p>' : '') +
+                    '</article>';
+                }).join('');
+                document.getElementById('content').innerHTML = html;
+            })
+            .catch(function(){
+                document.getElementById('content').innerHTML =
+                    '<div class="loading"><p>News feed temporarily unavailable. Please try again later.</p></div>';
+            });
+    </script>
+</body>
+</html>
