@@ -4,139 +4,563 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News Burnley - Local News, Sport & Community Updates</title>
-    <meta name="description" content="Latest Burnley news, sport and community updates. Aggregated from trusted Lancashire sources including Burnley Express, BBC Lancashire and more.">
-    <meta name="keywords" content="Burnley news, Burnley FC, Burnley Express, Lancashire news, Padiham, Brierfield, local news Burnley">
+    <meta name="description" content="Latest Burnley news, sport and community updates. Aggregated from trusted Lancashire sources.">
     <link rel="canonical" href="https://newsburnley.co.uk/">
-    <meta property="og:title" content="News Burnley - Local News & Updates">
-    <meta property="og:description" content="Latest Burnley news aggregated from trusted Lancashire sources.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://newsburnley.co.uk/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
-        :root{--bg:#0a0a0a;--surface:rgba(28,28,30,0.7);--surface-hover:rgba(44,44,46,0.8);--text:#f5f5f7;--text-secondary:rgba(245,245,247,0.6);--accent:#0a84ff;--border:rgba(255,255,255,0.08);--claret:#8B2635}
-        body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+        :root{--bg:#0a0a0a;--surface:rgba(28,28,30,0.7);--text:#f5f5f7;--text-secondary:rgba(245,245,247,0.6);--accent:#0a84ff;--border:rgba(255,255,255,0.08);--claret:#8B2635}
+        body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
         .container{max-width:900px;margin:0 auto;padding:0 20px}
-
-        /* Header */
-        header{padding:20px 0;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(10,10,10,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);z-index:100}
+        header{padding:20px 0;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(10,10,10,0.85);backdrop-filter:blur(20px);z-index:100}
         .header-inner{display:flex;align-items:center;justify-content:space-between}
-        .logo{font-size:1.4rem;font-weight:700;color:var(--text);text-decoration:none;letter-spacing:-0.02em}
+        .logo{font-size:1.4rem;font-weight:700;color:var(--text);text-decoration:none}
         .logo span{color:var(--claret)}
-        .header-link{color:var(--text-secondary);text-decoration:none;font-size:0.85rem;transition:color 0.2s}
-        .header-link:hover{color:var(--accent)}
-
-        /* Hero */
         .hero{padding:60px 0 40px;text-align:center}
-        .hero h1{font-size:clamp(2rem,5vw,3rem);font-weight:700;letter-spacing:-0.03em;margin-bottom:12px;background:linear-gradient(135deg,var(--text) 0%,var(--claret) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-        .hero p{color:var(--text-secondary);font-size:1.05rem;max-width:500px;margin:0 auto}
-
-        /* Articles */
+        .hero h1{font-size:clamp(2rem,5vw,3rem);font-weight:700;background:linear-gradient(135deg,var(--text) 0%,var(--claret) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .hero p{color:var(--text-secondary);margin-top:12px}
         .articles{padding-bottom:60px}
-        .article-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:16px;transition:all 0.3s ease;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-        .article-card:hover{background:var(--surface-hover);border-color:rgba(255,255,255,0.12);transform:translateY(-2px)}
-        .article-card h2{font-size:1.15rem;font-weight:600;margin-bottom:8px;letter-spacing:-0.01em;line-height:1.4}
-        .article-card h2 a{color:var(--text);text-decoration:none;transition:color 0.2s}
+        .article-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:16px}
+        .article-card:hover{border-color:rgba(255,255,255,0.12)}
+        .article-card h2{font-size:1.15rem;font-weight:600;margin-bottom:8px}
+        .article-card h2 a{color:var(--text);text-decoration:none}
         .article-card h2 a:hover{color:var(--accent)}
         .article-meta{display:flex;align-items:center;gap:12px;margin-bottom:10px;font-size:0.8rem}
-        .badge{background:var(--claret);color:#fff;padding:3px 10px;border-radius:20px;font-size:0.72rem;font-weight:600;letter-spacing:0.02em}
-        .date{color:var(--text-secondary)}
-        .article-summary{color:var(--text-secondary);font-size:0.9rem;line-height:1.5}
-
-        /* Loading */
-        .loading{text-align:center;padding:60px 0;color:var(--text-secondary)}
-        .loading-spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 16px}
-        @keyframes spin{to{transform:rotate(360deg)}}
-
-        /* Footer */
-        footer{border-top:1px solid var(--border);padding:30px 0;text-align:center;color:var(--text-secondary);font-size:0.82rem}
-        footer a{color:var(--accent);text-decoration:none}
-        footer p+p{margin-top:6px}
-
-        /* Count badge */
-        .article-count{text-align:center;margin-bottom:24px;font-size:0.85rem;color:var(--text-secondary)}
-        .article-count strong{color:var(--text)}
+        .badge{background:var(--claret);color:#fff;padding:3px 10px;border-radius:20px;font-size:0.72rem;font-weight:600}
+        .date, .source{color:var(--text-secondary)}
+        .article-summary{color:var(--text-secondary);font-size:0.9rem}
+        footer{padding:40px 0;text-align:center;color:var(--text-secondary);font-size:0.85rem;border-top:1px solid var(--border)}
+        .updated{margin-top:10px;font-size:0.75rem}
     </style>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "News Burnley",
-        "url": "https://newsburnley.co.uk",
-        "description": "Burnley news aggregated from trusted Lancashire sources",
-        "publisher": {
-            "@type": "Organization",
-            "name": "News Burnley",
-            "url": "https://newsburnley.co.uk"
-        }
-    }
-    </script>
 </head>
 <body>
     <header>
         <div class="container">
             <div class="header-inner">
-                <a href="/" class="logo">News<span>Burnley</span></a>
-                <a href="https://newslancashire.co.uk" class="header-link">News Lancashire &rarr;</a>
+                <a href="/" class="logo">News <span>Burnley</span></a>
+                <span style="color:var(--text-secondary);font-size:0.85rem">Auto-synced from News Lancashire</span>
             </div>
         </div>
     </header>
-
-    <div class="container">
+    
+    <main class="container">
         <section class="hero">
             <h1>Burnley News</h1>
-            <p>Latest news and updates from Burnley, aggregated from trusted Lancashire sources.</p>
+            <p>Latest news from Burnley, Padiham & Brierfield</p>
         </section>
-
-        <div id="article-count" class="article-count"></div>
-        <main id="content" class="articles">
-            <div class="loading">
-                <div class="loading-spinner"></div>
-                <p>Loading latest Burnley news...</p>
+        
+        <section class="articles">
+            
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">crime</span>
+                <span class="date"></span>
+                <span class="source">AI DOGE Weekly Crime Digest</span>
             </div>
-        </main>
-    </div>
-
+            <h2><a href="#" target="_blank">Weekly Crime Digest: 1119 offences across Lancashire councils</a></h2>
+            <p class="article-summary">Latest police data shows 1119 crimes reported across monitored Lancashire boroughs. Burnley: 1119 crimes (364 violent crime). Full ward-by-ward breakdowns available via AI DOGE.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">burnley</span>
+                <span class="date"></span>
+                <span class="source">AI Digest (borough)</span>
+            </div>
+            <h2><a href="#" target="_blank">Burnley Daily Digest: 6 stories you need to know</a></h2>
+            <p class="article-summary">A roundup of the latest news from Burnley, including Two drug dealers found with heroin and crack cocaine in Burnley jailed and other key stories.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">crime</span>
+                <span class="date"></span>
+                <span class="source">Lancashire Telegraph</span>
+            </div>
+            <h2><a href="#" target="_blank">Trial date set for man accused of drug possession with intent to supply in Burnley</a></h2>
+            <p class="article-summary">A Burnley man accused of possessing drugs with intent to supply will stand trial later this year after pleading not guilty.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">crime</span>
+                <span class="date"></span>
+                <span class="source">Lancashire Telegraph</span>
+            </div>
+            <h2><a href="#" target="_blank">Woman was supplying drugs to neighbours to fund her own habit</a></h2>
+            <p class="article-summary">A Nelson woman who admitted supplying cannabis to neighbours to fund her own drug habit has been given a community order.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">politics</span>
+                <span class="date"></span>
+                <span class="source">Lancashire Telegraph</span>
+            </div>
+            <h2><a href="#" target="_blank">Residents baffled by bus station shake-up — but councillors say fears are unfounded</a></h2>
+            <p class="article-summary">Colne residents and businesses are confused about a bus station revamp and traffic flow changes – but local councillors insist it will improve things for everyone.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">politics</span>
+                <span class="date"></span>
+                <span class="source">Lancashire Telegraph</span>
+            </div>
+            <h2><a href="#" target="_blank">Burnley residents urged to reject Blackburn merger in devolution consultation</a></h2>
+            <p class="article-summary">The leader of Burnley Council has urged borough residents to reject a merger with Blackburn in a local government reorganisation consultation.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">crime</span>
+                <span class="date"></span>
+                <span class="source">Lancashire Telegraph</span>
+            </div>
+            <h2><a href="#" target="_blank">Burnley man jailed after threatening to kill child after sexually assaulting her</a></h2>
+            <p class="article-summary">A Burnley man who threatened to kill a teenager if she did not let him sexually assault her has been jailed</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">crime</span>
+                <span class="date"></span>
+                <span class="source">Lancashire Telegraph</span>
+            </div>
+            <h2><a href="#" target="_blank">Two drug dealers found with heroin and crack cocaine in Burnley jailed</a></h2>
+            <p class="article-summary">Two men who were found in possession of drugs in Burnley have been jailed</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">business</span>
+                <span class="date"></span>
+                <span class="source">Lancashire Telegraph</span>
+            </div>
+            <h2><a href="#" target="_blank">Burnley residents urged to reject merger with Blackburn</a></h2>
+            <p class="article-summary">Burnley residents urged to reject merger with Blackburn    Lancashire Telegraph</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">community</span>
+                <span class="date"></span>
+                <span class="source">Lancashire Telegraph</span>
+            </div>
+            <h2><a href="#" target="_blank">Excitement as three key events announce dates in Burnley this year</a></h2>
+            <p class="article-summary">Three key events in the Burnley calendar are set to return this year, offering both family days out and live music experiences</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">politics</span>
+                <span class="date"></span>
+                <span class="source">Burnley Express</span>
+            </div>
+            <h2><a href="#" target="_blank">Burnley councillor at centre of row over failing to declare her financial interests speaks for first time to defend herself</a></h2>
+            <p class="article-summary">The senior councillor at the centre of a row over failing to properly declare her financial interests has said ‘there was no intent to mislead, no financial gain or attempt to achieve it’.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">education</span>
+                <span class="date"></span>
+                <span class="source">Burnley Express</span>
+            </div>
+            <h2><a href="#" target="_blank">Langho headteacher and pupils get their skates on</a></h2>
+            <p class="article-summary">The headteacher and pupils at St Mary’s RC Primary School are getting their skates on to help their mental well-being.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">crime</span>
+                <span class="date"></span>
+                <span class="source">Lancashire Telegraph</span>
+            </div>
+            <h2><a href="#" target="_blank">Violent rapist who brutally raped and assaulted  sex worker given 23-year sentence</a></h2>
+            <p class="article-summary">A violent rapist who subjected a Burnley sex worker to a three-and-a-half-hour ordeal of abuse has been given a sentence of 23 years.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">politics</span>
+                <span class="date"></span>
+                <span class="source">Burnley Express</span>
+            </div>
+            <h2><a href="#" target="_blank">Burnley Council to review proposed increase in cremation and burial fees</a></h2>
+            <p class="article-summary">Burnley Council to review proposed increase in cremation and burial fees    Burnley Express</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">politics</span>
+                <span class="date"></span>
+                <span class="source">Lancashire Telegraph</span>
+            </div>
+            <h2><a href="#" target="_blank">Padiham £5 million flood defence cash progress hailed by council boss</a></h2>
+            <p class="article-summary">The Environment Agency has been given £5 million to progress the building of flood defences in Padiham over the coming years</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">politics</span>
+                <span class="date"></span>
+                <span class="source">Burnley Express</span>
+            </div>
+            <h2><a href="#" target="_blank">Final chance for Burnley residents to have their say on Lancashire council shake-up</a></h2>
+            <p class="article-summary">Burnley people have a final opportunity to share their views on proposals to reorganise local government across Lancashire.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">crime</span>
+                <span class="date"></span>
+                <span class="source">Burnley Express</span>
+            </div>
+            <h2><a href="#" target="_blank">Nelson man arrested on suspicion of exposure to teenage girl</a></h2>
+            <p class="article-summary">A 29-year-old man has been arrested on suspicion of exposing himself to a teenage girl close to the Nelson-Burnley border.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">crime</span>
+                <span class="date"></span>
+                <span class="source">Lancashire Telegraph</span>
+            </div>
+            <h2><a href="#" target="_blank">Sentence date set for man found guilty of sex offences against 8-year-old girl</a></h2>
+            <p class="article-summary">A man has been found guilty of three historic sexual offences against a girl in Burnley.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">politics</span>
+                <span class="date"></span>
+                <span class="source">Lancashire Evening Post</span>
+            </div>
+            <h2><a href="#" target="_blank">Environment Agency given £5m for Lancashire flood defences set to be completed by 2029</a></h2>
+            <p class="article-summary">The Environment Agency has been given £5 million to progress the building of flood defences in Padiham with a view to completing them in 2029.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">crime</span>
+                <span class="date"></span>
+                <span class="source">Lancashire Evening Post</span>
+            </div>
+            <h2><a href="#" target="_blank">Rapist beat woman with metal bar and slashed her with knife in five-hour Burnley attack</a></h2>
+            <p class="article-summary">A man who subjected a woman to a prolonged violent rape attack in Burnley has been jailed.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">crime</span>
+                <span class="date"></span>
+                <span class="source">Burnley Express</span>
+            </div>
+            <h2><a href="#" target="_blank">Former police officer who worked in Burnley during his career jailed after admitting coercive and controlling behaviour towards a woman</a></h2>
+            <p class="article-summary">A former police officer has been jailed after admitting coercive and controlling behaviour towards a woman.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">crime</span>
+                <span class="date"></span>
+                <span class="source">Burnley Express</span>
+            </div>
+            <h2><a href="#" target="_blank">Rapist who attacked woman in Burnley jailed for 23 years</a></h2>
+            <p class="article-summary">A 41-year-old man who attacked and raped a woman in Burnley has been jailed for 23 years.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">crime</span>
+                <span class="date"></span>
+                <span class="source">Lancashire Evening Post</span>
+            </div>
+            <h2><a href="#" target="_blank">'Are we going to make it back?' - Burnley Netflix star Dave Fishwick on his near-death experience</a></h2>
+            <p class="article-summary">Burnley business magnate Dave Fishwick has revealed the moment he came terrifyingly close to death.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">politics</span>
+                <span class="date"></span>
+                <span class="source">Burnley Express</span>
+            </div>
+            <h2><a href="#" target="_blank">Padiham flood defence scheme moves ahead with £5m. funding boost</a></h2>
+            <p class="article-summary">The government has released £5m. through the Environment Agency to move Padiham’s long-delayed flood defence scheme forward with a view to completing them in 2029.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">crime</span>
+                <span class="date"></span>
+                <span class="source">Burnley Police Data (AI DOGE)</span>
+            </div>
+            <h2><a href="#" target="_blank">Crime in Burnley: 1119 offences reported in 2025-12</a></h2>
+            <p class="article-summary">1119 crimes were reported in Burnley during 2025-12. The most common offences were violent crime (364 cases), followed by anti-social behaviour (234 cases). Police resolved 79% of cases.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">community</span>
+                <span class="date"></span>
+                <span class="source">BBC Lancashire</span>
+            </div>
+            <h2><a href="#" target="_blank">How a magnate's fortune still funds Burnley's arts</a></h2>
+            <p class="article-summary">Edward Stocks Massey left his entire fortune in 1909 to support the arts and education in Burnley.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">burnley</span>
+                <span class="date"></span>
+                <span class="source">AI Digest (borough)</span>
+            </div>
+            <h2><a href="#" target="_blank">Burnley Daily Digest: 8 stories you need to know</a></h2>
+            <p class="article-summary">A roundup of the latest news from Burnley, including Two drug dealers found with heroin and crack cocaine in Burnley jailed and other key stories.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">politics</span>
+                <span class="date"></span>
+                <span class="source">GOV.UK Budget Data (AI DOGE)</span>
+            </div>
+            <h2><a href="#" target="_blank">Burnley Council spending rose 8.3% to £43.3M</a></h2>
+            <p class="article-summary">Burnley Borough Council's net current expenditure rose by £3.3million (8.3%) in 2024-25, according to GOV.UK data. Total spending reached £43.3million, compared to £40.0million in 2023-24.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">transport</span>
+                <span class="date"></span>
+                <span class="source">Burnley Express</span>
+            </div>
+            <h2><a href="#" target="_blank">Come fly with me: 31 nostalgic photos taking you back in time at North West's busiest airports</a></h2>
+            <p class="article-summary"><p>They are two of the UK’s busiest airports, between them handling nearly 38 million passengers a year.</p></p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">community</span>
+                <span class="date"></span>
+                <span class="source">Burnley Express</span>
+            </div>
+            <h2><a href="#" target="_blank">Thompson Park Miniature Railway Society in Burnley looking for new volunteers</a></h2>
+            <p class="article-summary">An announcement has been made for wannabe train drivers and other volunteers to help out at Burnley’s popular Thompson Park Miniature Railway Society.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">weather</span>
+                <span class="date"></span>
+                <span class="source">Burnley Express</span>
+            </div>
+            <h2><a href="#" target="_blank">Four fire engines and hazardous materials unit from Lancashire Fire and Rescue Service called to garage blaze in Padiham</a></h2>
+            <p class="article-summary">The hazardous materials unit from Lancashire Fire and Rescue was among the crews called to an incident in Padiham yesterday (Wednesday)</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">crime</span>
+                <span class="date"></span>
+                <span class="source">Lancaster Guardian</span>
+            </div>
+            <h2><a href="#" target="_blank">Court round-up for Lancaster and Morecambe</a></h2>
+            <p class="article-summary">The following people were dealt with by magistrates at Lancaster and Burnley:</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">crime</span>
+                <span class="date"></span>
+                <span class="source">Lancashire Telegraph</span>
+            </div>
+            <h2><a href="#" target="_blank">Inquest opens into death of 'beautiful' mum who was 'life and soul of the party'</a></h2>
+            <p class="article-summary">An inquest into the death of a Nelson woman described as "the life and soul of the party" has been formally opened.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">crime</span>
+                <span class="date"></span>
+                <span class="source">Lancashire Evening Post</span>
+            </div>
+            <h2><a href="#" target="_blank">Woman pushed from van and dragged along Preston street as police hunt wanted man who may be in Burnley</a></h2>
+            <p class="article-summary">A man is wanted by police after a woman was pushed from a van and dragged along a Preston street while holding onto the vehicle.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">politics</span>
+                <span class="date"></span>
+                <span class="source">Burnley Express</span>
+            </div>
+            <h2><a href="#" target="_blank">Final chance to have your say on the future of local government in Lancashire</a></h2>
+            <p class="article-summary">Final chance to have your say on the future of local government in Lancashire    Burnley Express</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">general</span>
+                <span class="date"></span>
+                <span class="source">Burnley Express</span>
+            </div>
+            <h2><a href="#" target="_blank">42 flashback Burnley bar photos from 2014 featuring Mojitos, Remedy and more</a></h2>
+            <p class="article-summary">Ready for a blast from the past?</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">business</span>
+                <span class="date"></span>
+                <span class="source">Burnley Express</span>
+            </div>
+            <h2><a href="#" target="_blank">Planning application submitted to redevelop former restaurant Langroyd Hall in Colne into over-50s apartments</a></h2>
+            <p class="article-summary">Plans have been submitted to convert a popular former carvery into apartments.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">health</span>
+                <span class="date"></span>
+                <span class="source">Burnley Express</span>
+            </div>
+            <h2><a href="#" target="_blank">St Peter's Centre in Burnley to be renovated</a></h2>
+            <p class="article-summary">Plans are underway to renovate a Burnley health centre.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">community</span>
+                <span class="date"></span>
+                <span class="source">Lancashire Telegraph</span>
+            </div>
+            <h2><a href="#" target="_blank">Grade-II Listed hall once used as pub could be turned into 21 apartments</a></h2>
+            <p class="article-summary">Plans have been submitted to convert Grade II listed Langroyd Hall, Colne, into over-50s apartments and cottages</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">crime</span>
+                <span class="date"></span>
+                <span class="source">Lancashire Telegraph</span>
+            </div>
+            <h2><a href="#" target="_blank">Trial set after man pleads not guilty to causing serious injury by dangerous driving</a></h2>
+            <p class="article-summary">A Burnley man accused of causing serious injury by dangerous driving will face a trial after pleading not guilty</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">education</span>
+                <span class="date"></span>
+                <span class="source">Lancashire Telegraph</span>
+            </div>
+            <h2><a href="#" target="_blank">Sentencing for man who called himself 'G-Spot' online pushed back for fourth time</a></h2>
+            <p class="article-summary">The sentencing of a Nelson man over sex offences has been put back for a fourth time</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">general</span>
+                <span class="date"></span>
+                <span class="source">Burnley Express</span>
+            </div>
+            <h2><a href="#" target="_blank">CJ Egan-Riley's younger brother leaves Tottenham to join Burnley's Under-21s</a></h2>
+            <p class="article-summary">Roman Egan-Riley, the younger brother of former Claret CJ, has signed for Burnley’s Under-21s.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">politics</span>
+                <span class="date"></span>
+                <span class="source">Burnley Express</span>
+            </div>
+            <h2><a href="#" target="_blank">Government Launch Statutory Consultation on Local Government Reorganisation in Lancashire</a></h2>
+            <p class="article-summary">The statutory consultation, launched by the Ministry of Housing, Communities and Local Government (MHCLG), runs from 5 February to 26 March 2026 and invites views on proposals to reorganise local government across Lancashire.  This is the last chance for people to share their views on the future of local government structures in Lancashire.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">community</span>
+                <span class="date"></span>
+                <span class="source">Burnley Express</span>
+            </div>
+            <h2><a href="#" target="_blank">Council issues major update on future of 'poor condition' Lancashire care homes</a></h2>
+            <p class="article-summary"><p>The leader of Lancashire County Council has said the authority has “no intention to close” any of the five elderly care homes whose futures it has been reviewing.</p></p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">education</span>
+                <span class="date"></span>
+                <span class="source">Burnley Express</span>
+            </div>
+            <h2><a href="#" target="_blank">Number of ‘platonic’ Valentine’s cards sent has increased by a third in a year</a></h2>
+            <p class="article-summary"><p>The number of ‘platonic’ Valentine’s cards sent to friends and family has increased by nearly a third in a year.</p></p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">general</span>
+                <span class="date"></span>
+                <span class="source">Burnley Express</span>
+            </div>
+            <h2><a href="#" target="_blank">1940s-themed Padiham on Parade to receive a £5,500 boost</a></h2>
+            <p class="article-summary">The annual 1940s-themed Padiham on Parade will receive a £5,500 boost.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">education</span>
+                <span class="date"></span>
+                <span class="source">BBC Lancashire</span>
+            </div>
+            <h2><a href="#" target="_blank">'Northerners feel outnumbered at my northern uni'</a></h2>
+            <p class="article-summary">Lucy Morville, from Burnley revives York University's Northern Society to give northerners a home.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">crime</span>
+                <span class="date"></span>
+                <span class="source">LEP Preston</span>
+            </div>
+            <h2><a href="#" target="_blank">Man arrested on suspicion of murder after 'unexplained' death of Nelson woman found in flat</a></h2>
+            <p class="article-summary"><p>A man has been arrested on suspicion of murder after the ‘unexplained’ death of a woman in a flat in East Lancashire.</p></p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">crime</span>
+                <span class="date"></span>
+                <span class="source">Burnley Express</span>
+            </div>
+            <h2><a href="#" target="_blank">Excel Fostering appealing for foster families in Burnley and Pendle</a></h2>
+            <p class="article-summary">A fostering agency is urging people across Burnley and Pendle to consider opening their homes to children and young people in care.</p>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="badge">general</span>
+                <span class="date"></span>
+                <span class="source">Burnley Express</span>
+            </div>
+            <h2><a href="#" target="_blank">We’ve had a look inside the loveholidays sale – these 2026 breaks are still available before it ends</a></h2>
+            <p class="article-summary"><p>With the loveholidays Sale closing this weekend, we’ve taken a look at which well-reviewed European package holidays are still showing availability for 2026.</p></p>
+        </article>
+        
+        </section>
+    </main>
+    
     <footer>
         <div class="container">
-            <p>&copy; 2026 News Burnley. Aggregated from multiple sources.</p>
-            <p>Part of the <a href="https://newslancashire.co.uk">News Lancashire</a> network</p>
+            <p>News Burnley - Aggregated local news</p>
+            <p class="updated">Last updated: 2026-02-09 01:43</p>
         </div>
     </footer>
-
-    <script>
-        fetch('burnley-news.json')
-            .then(function(r){return r.json()})
-            .then(function(articles){
-                document.getElementById('article-count').innerHTML =
-                    '<strong>' + articles.length + '</strong> articles from Burnley and surrounding areas';
-                var html = articles.map(function(a){
-                    var summary = a.summary || '';
-                    summary = summary.replace(/<[^>]+>/g, '');
-                    var dateStr = '';
-                    try {
-                        var d = new Date(a.published);
-                        dateStr = d.toLocaleDateString('en-GB', {day:'numeric',month:'short',year:'numeric'});
-                    } catch(e) {
-                        dateStr = a.published || '';
-                    }
-                    return '<article class="article-card">' +
-                        '<div class="article-meta">' +
-                            '<span class="badge">' + a.source + '</span>' +
-                            '<span class="date">' + dateStr + '</span>' +
-                        '</div>' +
-                        '<h2><a href="' + a.link + '" target="_blank" rel="noopener">' + a.title + '</a></h2>' +
-                        (summary ? '<p class="article-summary">' + summary + '</p>' : '') +
-                    '</article>';
-                }).join('');
-                document.getElementById('content').innerHTML = html;
-            })
-            .catch(function(){
-                document.getElementById('content').innerHTML =
-                    '<div class="loading"><p>News feed temporarily unavailable. Please try again later.</p></div>';
-            });
-    </script>
 </body>
 </html>
